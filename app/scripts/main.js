@@ -22,9 +22,16 @@ console.log('\'Allo \'Allo!');
 // const Marker = require('@editorjs/marker')
 // const Underline = require('@editorjs/underline')
 
-const editor = new EditorJS({
+let existingData;
+function loadData() {
+  existingData = JSON.parse(localStorage.getItem('editor') || {});
+}
+
+loadData();
+let editor = new EditorJS({
   holder: 'editor',
   autofocus: true,
+  data: existingData,
   tools: {
     header: {
       class: Header,
@@ -86,3 +93,24 @@ const editor = new EditorJS({
     underline: Underline
   }
 });
+
+function save() {
+  console.log('save function called');
+  editor.save().then((outputData) => {
+    localStorage.setItem('editor', JSON.stringify(outputData));
+    console.log('Article data: ', outputData)
+  }).catch((error) => {
+    console.log('Saving failed: ', error)
+  });
+}
+
+function deleteAll() {
+  editor = new EditorJS({
+    holder: 'editor',
+  })
+  var div = document.getElementById('editor');
+  while (div.firstChild) {
+    div.removeChild(div.firstChild);
+  }
+  console.log('clear function called');
+}

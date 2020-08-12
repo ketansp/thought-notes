@@ -14,10 +14,79 @@
   <!-- endbuild -->
   <!-- build:css styles/main.css -->
   <link rel="stylesheet" href="styles/main.css">
+  <link rel="stylesheet" href="styles/navbar.css">
+  <link rel="stylesheet" href="styles/sidebar.css">
+  <link rel="stylesheet" href="styles/editor.css">
   <!-- endbuild -->
 </head>
 
 <body>
+  <div class="d-flex" id="wrapper">
+
+    <!-- Sidebar -->
+    <div class="border-right sidebar sidebar-background" id="sidebar-wrapper">
+      <div class="sidebar-heading">Thought Notes</div>
+      <div class="list-group list-group-flush">
+        <a href="#" class="list-group-item-action" style="padding: 0.25rem 1.25rem;">Work Space</a>
+        <a href="#" class="list-group-item-action" style="padding: 0.25rem 1.25rem;">Personal Space</a>
+      </div>
+    </div>
+    <!-- /#sidebar-wrapper -->
+
+    <!-- Page Content -->
+    <div id="page-content-wrapper" class="background">
+
+      <nav class="navbar navbar-expand-lg navbar-light border-bottom">
+        <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+          <li class="nav-item">
+            <a class="nav-link" onclick="toggle();">Toggle</a>
+          </li>
+        </ul>
+        <!-- <button class="btn btn-primary" id="menu-toggle">Menu</button>
+        <a class="nav-link" href="#" onclick="save();">Save</a>
+        <a class="nav-link" href="#" onclick="reset();">Reset</a>
+        <button class="btn btn-primary " onclick="save();">Save</button>
+        <button class="btn btn-primary" onclick="reset();">Reset</button>
+
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button> -->
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+            <li class="nav-item">
+              <a class="nav-link" onclick="save();">Save</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" onclick="reset();">Reset</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false">
+                More
+              </a>
+              <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="#">Action</a>
+                <a class="dropdown-item" href="#">Another action</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="#">Something else here</a>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </nav>
+
+      <div id="editor" class="editor">
+      </div>
+    </div>
+    <!-- /#page-content-wrapper -->
+
+  </div>
+  <!-- /#wrapper -->
+</body>
+
+<!-- <body>
   <div class="container">
     <div class="header">
       <ul class="nav nav-pills float-right">
@@ -31,7 +100,7 @@
     <button onclick="deleteAll();">Clear</button>
     <div id="editor"></div>
   </div>
-</body>
+</body> -->
 <footer>
   <div class="footer">
     <p>♥ from the Yeoman team</p>
@@ -48,8 +117,8 @@
     ga('create', 'UA-XXXXX-X'); ga('send', 'pageview');
   </script> -->
   <!-- build:js scripts/vendor.js -->
-  <!-- <script type="text/javascript" src="/node_modules/jquery/dist/jquery.min.js"></script>
-  <script type="text/javascript" src="/node_modules/bootstrap/dist/js/bootstrap.min.js"></script> -->
+  <script type="text/javascript" src="/node_modules/jquery/dist/jquery.min.js"></script>
+  <script type="text/javascript" src="/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
   <script type="text/javascript" src="/node_modules/@editorjs/editorjs/dist/editor.js"></script>
   <script type="text/javascript" src="/node_modules/@editorjs/header/dist/bundle.js"></script>
   <script type="text/javascript" src="/node_modules/@editorjs/code/dist/bundle.js"></script>
@@ -67,7 +136,15 @@
   <!-- endbuild -->
   <!-- build:js scripts/main.js -->
   <script type="text/javascript" src="scripts/main.js"></script>
+  <script type="text/javascript" src="scripts/sidebar.js"></script>
+  <script type="text/javascript" src="scripts/editor.js"></script>
   <!-- endbuild -->
+  <script>
+    $("#menu-toggle").click(function (e) {
+      e.preventDefault();
+      $("#wrapper").toggleClass("toggled");
+    });
+  </script>
 </footer>
 
 </html>

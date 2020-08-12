@@ -24,7 +24,8 @@ console.log('\'Allo \'Allo!');
 
 let existingData;
 function loadData() {
-  existingData = JSON.parse(localStorage.getItem('editor') || {});
+  existingData = localStorage.getItem('editor');
+  existingData = existingData ? JSON.parse(existingData) : {};
 }
 
 loadData();
@@ -104,7 +105,7 @@ function save() {
   });
 }
 
-function deleteAll() {
+function reset() {
   editor = new EditorJS({
     holder: 'editor',
   })

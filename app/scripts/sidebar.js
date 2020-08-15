@@ -32,4 +32,5 @@ function changeBackground() {
   currentSidebarBackground = newBackground;
 }
 
-setInterval(changeBackground, 30000);
+// changeBackground();
+// setInterval(changeBackground, 30000);

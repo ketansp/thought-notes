@@ -24,11 +24,11 @@
   <div class="d-flex" id="wrapper">
 
     <!-- Sidebar -->
-    <div class="border-right sidebar sidebar-background" id="sidebar-wrapper">
+    <div class="sidebar pull-right" id="sidebar-wrapper">
       <div class="sidebar-heading">Thought Notes</div>
       <div class="list-group list-group-flush">
-        <a href="#" class="list-group-item-action" style="padding: 0.25rem 1.25rem;">Work Space</a>
-        <a href="#" class="list-group-item-action" style="padding: 0.25rem 1.25rem;">Personal Space</a>
+        <!-- <a href="#" class="list-group-item-action" style="padding: 0.25rem 1.25rem;">Work Space</a>
+        <a href="#" class="list-group-item-action" style="padding: 0.25rem 1.25rem;">Personal Space</a> -->
       </div>
     </div>
     <!-- /#sidebar-wrapper -->
@@ -36,12 +36,12 @@
     <!-- Page Content -->
     <div id="page-content-wrapper" class="background">
 
-      <nav class="navbar navbar-expand-lg navbar-light border-bottom">
-        <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+      <nav class="navbar navbar-expand-lg navbar-light">
+        <!-- <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
           <li class="nav-item">
             <a class="nav-link" onclick="toggle();">Toggle</a>
           </li>
-        </ul>
+        </ul> -->
         <!-- <button class="btn btn-primary" id="menu-toggle">Menu</button>
         <a class="nav-link" href="#" onclick="save();">Save</a>
         <a class="nav-link" href="#" onclick="reset();">Reset</a>
@@ -56,10 +56,11 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
             <li class="nav-item">
+              <!-- <label class="nav-link">this is a sample label</label> -->
               <a class="nav-link" onclick="save();">Save</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" onclick="reset();">Reset</a>
+              <a class="nav-link" data-toggle="modal" data-target="#reset-modal">Reset</a>
             </li>
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
@@ -67,10 +68,10 @@
                 More
               </a>
               <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="#">Action</a>
-                <a class="dropdown-item" href="#">Another action</a>
+                <a class="dropdown-item" onclick="exportData();">Export</a>
+                <a class="dropdown-item" data-toggle="modal" data-target="#import-modal">Import</a>
                 <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#">Something else here</a>
+                <a class="dropdown-item">More options</a>
               </div>
             </li>
           </ul>
@@ -85,6 +86,44 @@
   </div>
   <!-- /#wrapper -->
 </body>
+
+<div class="modal" id="reset-modal" tabindex="-1" role="dialog" aria-labelledby="reset-modal-label" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        Are you sure you want to reset?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-secondary btn-sm" data-dismiss="modal">No</button>
+        <button type="button" class="btn btn-outline-secondary btn-sm"
+          onclick="reset(); $('#reset-modal').modal('hide')">Yes,
+          reset!</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal" id="import-modal" tabindex="-1" role="dialog" aria-labelledby="import-modal-label"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <form>
+      <div class="modal-content">
+        <div class="modal-body">
+          Select a previously exported file. This will erase your existing work!
+        </div>
+        <div class="custom-file import-file">
+          <input type="file" class="custom-file-input" id="imported-file" accept=".json" name="imported-file">
+          <label class=" custom-file-label" for="import-file">Choose file</label>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline-secondary btn-sm" data-dismiss="modal">No</button>
+          <button type="button" class="btn btn-outline-secondary btn-sm"
+            onclick="importData(); $('#import-modal').modal('hide')">Import</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
 
 <!-- <body>
   <div class="container">
@@ -138,6 +177,7 @@
   <script type="text/javascript" src="scripts/main.js"></script>
   <script type="text/javascript" src="scripts/sidebar.js"></script>
   <script type="text/javascript" src="scripts/editor.js"></script>
+  <script type="text/javascript" src="scripts/utils.js"></script>
   <!-- endbuild -->
   <script>
     $("#menu-toggle").click(function (e) {
